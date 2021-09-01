@@ -42,7 +42,8 @@ class QuestionsViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        guard let resultSV = segue.destination as? ResultViewController else { return }
+        resultSV.answers = answersChosen
     }
     
     @IBAction func singleAnswerButtonPressed(_ sender: UIButton) {
@@ -118,6 +119,10 @@ extension QuestionsViewController {
         
         for (label, answer) in zip(multipleLabels, answers) {
             label.text = answer.title
+        }
+        
+        for switchItem in multipleSwitches {
+            switchItem.isOn = false
         }
     }
     
